@@ -1,0 +1,6 @@
+#!/bin/bash
+
+params=$*
+echo $params
+unset params
+
