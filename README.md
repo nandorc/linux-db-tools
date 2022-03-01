@@ -1,5 +1,7 @@
 # Database Inspector
 
+**Current version:** 1.0
+
 This repository contains a tool for bash to help inpection of databases.
 
 # Tools
