@@ -1,0 +1,2 @@
+/etc/*
+!/etc/vars.ini.sample
