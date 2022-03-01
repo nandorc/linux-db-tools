@@ -1,0 +1,20 @@
+\e[34mDUMPER Tool\e[0m
+
+This tool allows user to retreive structure, data or both from tables of a database using \e[33mmysqldump\e[0m command
+
+\e[32mSintaxis\e[0m
+\tdumper [options] path/to/vars.ini/file
+
+\e[32mParameters\e[0m
+\tpath/to/vars.ini/file\tRefers to the path to a file based on \e[33metc/vars.ini.sample\e[0m containing defined variables for connection
+
+\e[32mOptions\e[0m
+
+\t--no-gtid
+\t\tIf database has GTID, use this flag to supress it at dumped SQL files
+
+\t--help
+\t\tPrints information about the command
+
+\t--output-folder path
+\t\tDefines path to folder where dumped files will be stored
