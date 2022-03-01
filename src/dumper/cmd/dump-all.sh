@@ -42,7 +42,6 @@ for i in "${tables_list_array[@]}"; do
     fi
     sed -i -e "s/),(/),\n  (/g" "$output_folder"/data/"$i".sql
     sed -i -e "s/VALUES /VALUES\n  /" "$output_folder"/data/"$i".sql
-    sed -i -e "s/INSERT/DELETE FROM \`$i\`;\nINSERT/" "$output_folder"/data/"$i".sql
     echo -e "DONE"
 done
 
