@@ -22,6 +22,7 @@ for i in "${tables_list_array[@]}"; do
         echo -e " using gtid supression...\c"
         mysqldump --host="$dbhost" --user="$dbuser" --password="$dbpwd" --result-file="$output_folder/struct/$i.sql" --compact --no-data --add-drop-table --set-gtid-purged=OFF --skip-comments --skip-add-locks --skip-lock-tables "$dbname" "$i" 2>&1 | grep -v "Warning" | grep -v "Error"
     else
+        echo -e "...\c"
         mysqldump --host="$dbhost" --user="$dbuser" --password="$dbpwd" --result-file="$output_folder/struct/$i.sql" --compact --no-data --add-drop-table --skip-comments --skip-add-locks --skip-lock-tables "$dbname" "$i" 2>&1 | grep -v "Warning" | grep -v "Error"
     fi
     sed -i -e 's/ AUTO_INCREMENT=[0-9]\+//' "$output_folder"/struct/"$i".sql
