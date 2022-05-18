@@ -12,3 +12,6 @@ This tool allows user to load structure and data to database using \e[33mmysql\e
 
 \t--help
 \t\tPrints information about the command
+
+\t--origin-folder path
+\t\t\e[31m[REQUIRED]\e[0m Defines path to folder where .sql files are stored

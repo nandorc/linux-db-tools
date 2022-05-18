@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check if no parameters received
-[ $# -eq 0 ] && echo -e "\e[31mNo parameters received\e[0m\nTry using the \e[33m--help\e[0m flag to get aditional information" && exit 1
+[ $# -eq 0 ] && echo -e "\n\e[31mExecution Exception:\e[0m No parameters received\nTry using the \e[33m--help\e[0m flag to get aditional information\n" && exit 1
 params=$*
 
 # Set execution directory
@@ -16,3 +16,26 @@ source "$execution_path"/lib/inihandler.sh
 # Display help if requested
 [ $(hasFlag --help $*) -eq 1 ] && echo -e "\n$(cat "$execution_path"/src/loader/help)\n" && exit
 params=$(pruneFlag --help $params)
+
+# Check output folder
+origin_folder=$(getFlagValue --origin-folder $params) && params=$(pruneFlagValue --origin-folder $params)
+[ -z "$origin_folder" ] && echo -e "\n\e[31mExecution Exception:\e[0m No origin folder defined\nUse \e[33m--origin-folder\e[0m option to define it\n" && exit 1
+[ ! -d "$origin_folder" ] && echo -e "\n\e[31mExecution Exception:\e[0m No folder found at \e[33m$origin_folder\n" && exit 1
+
+# Check non valid extra params
+params_array=(${params// / })
+[ ${#params_array[@]} -gt 1 ] && echo -e "\n\e[31mExecution Exception:\e[0m No valid parameters received\nTry using the \e[33m--help\e[0m flag to see valid options\n" && exit 1
+
+# Check file located at vars_path
+vars_path=$params
+[ -z "$vars_path" ] && echo -e "\n\e[31mExecution Exception:\e[0m Path to credentials file not defined\nTry using the \e[33m--help\e[0m flag to see valid options\n" && exit 1
+[ ! -f "$vars_path" ] && echo -e "\n\e[31mExecution Exception:\e[0m File not found at \e[33m$vars_path\e[0m\nTry using the \e[33m--help\e[0m flag to see valid options\n" && exit 1
+
+# Build commands parameters
+command_parameters="$origin_folder $(getINIVar $vars_path dbhost) $(getINIVar $vars_path dbuser) $(getINIVar $vars_path dbpwd) $(getINIVar $vars_path dbname)"
+
+# Dump all data
+"$execution_path"/src/loader/cmd/load-all.sh $command_parameters
+
+# Report error if has to
+[ $? -ne 0 ] && exit 1
