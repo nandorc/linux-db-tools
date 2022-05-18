@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Check if no parameters received
+[ $# -eq 0 ] && echo -e "\e[31mNo parameters received\e[0m\nTry using the \e[33m--help\e[0m flag to get aditional information" && exit 1
+params=$*
+
+# Set execution directory
+execution_path=$0
+[ -z "$(echo "$execution_path" | grep "^/")" ] && execution_path="$(pwd)/$execution_path"
+execution_path=$(echo "$execution_path" | sed -e "s|/loader||")/..
+
+# Load dependencies
+source "$execution_path"/lib/flagger.sh
+source "$execution_path"/lib/inihandler.sh
+
+# Display help if requested
+[ $(hasFlag --help $*) -eq 1 ] && echo -e "\n$(cat "$execution_path"/src/loader/help)\n" && exit
+params=$(pruneFlag --help $params)
