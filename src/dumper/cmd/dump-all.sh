@@ -11,10 +11,10 @@ fi
 # Get tables names
 echo -e "\n\e[34mGetting current tables names at $dbname...\c"
 tables_list=$(mysql --host="$dbhost" --user="$dbuser" --password="$dbpwd" --database="$dbname" --execute="show tables;" 2>&1)
-[ $? -ne 0 ] && echo -e "\e[31mExecution Exception:\e[0m Can't connect to database\n\e[33mCheck variables for connection or mysql server status\e[0m\n" && exit 1
+[ $? -ne 0 ] && echo -e "FAIL\e[0m" && echo -e "\e[31mExecution Exception:\e[0m Can't connect to database\n\e[33mCheck variables for connection or mysql server status\e[0m\n" && exit 1
 tables_list=$(mysql --host="$dbhost" --user="$dbuser" --password="$dbpwd" --database="$dbname" --execute="show tables;" --skip-column-names 2>&1 | grep -v "Warning")
 tables_list_array=(${tables_list// / })
-echo -e "OK\e[0m"
+echo -e "DONE\e[0m"
 
 # Dump tables structure
 echo -e "\n\e[34mDumping structure of tables at $dbname\e[0m"
