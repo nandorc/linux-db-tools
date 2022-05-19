@@ -28,13 +28,13 @@ params_array=(${params// / })
 
 # Check file located at vars_path
 vars_path=$params
-[ -z "$vars_path" ] && echo -e "\n\e[31mExecution Exception:\e[0m Path to credentials file not defined\nTry using the \e[33m--help\e[0m flag to see valid options\n" && exit 1
-[ ! -f "$vars_path" ] && echo -e "\n\e[31mExecution Exception:\e[0m File not found at \e[33m$vars_path\e[0m\nTry using the \e[33m--help\e[0m flag to see valid options\n" && exit 1
+[ -z "$vars_path" ] && echo -e "\n\e[31mExecution Exception:\e[0m Path to credentials file not defined\nTry using the \e[33m--help\e[0m flag to see the right sintax\n" && exit 1
+[ ! -f "$vars_path" ] && echo -e "\n\e[31mExecution Exception:\e[0m File not found at \e[33m$vars_path\e[0m\nTry using the \e[33m--help\e[0m flag to see more information\n" && exit 1
 
 # Build commands parameters
 command_parameters="$origin_folder $(getINIVar $vars_path dbhost) $(getINIVar $vars_path dbuser) $(getINIVar $vars_path dbpwd) $(getINIVar $vars_path dbname)"
 
-# Dump all data
+# Load all data
 "$execution_path"/src/loader/cmd/load-all.sh $command_parameters
 
 # Report error if has to
