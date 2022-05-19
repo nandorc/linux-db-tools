@@ -17,4 +17,4 @@ This tool allows user to retreive structure, data or both from tables of a datab
 \t\tPrints information about the command
 
 \t--output-folder path
-\t\tDefines path to folder where dumped files will be stored
+\t\t\e[31m[REQUIRED]\e[0m Defines path to folder where dumped files will be stored
