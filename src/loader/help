@@ -1,0 +1,17 @@
+\e[34mLOADER Tool\e[0m
+
+This tool allows user to load structure and data to database using \e[33mmysql\e[0m command
+
+\e[32mSintaxis\e[0m
+\tloader [options] path/to/vars.ini/file
+
+\e[32mParameters\e[0m
+\tpath/to/vars.ini/file\tRefers to the path to a file based on \e[33metc/vars.ini.sample\e[0m containing defined variables for connection
+
+\e[32mOptions\e[0m
+
+\t--help
+\t\tPrints information about the command
+
+\t--origin-folder path
+\t\t\e[31m[REQUIRED]\e[0m Defines path to folder where .sql files are stored
