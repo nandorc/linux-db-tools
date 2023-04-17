@@ -1,6 +1,6 @@
 # DB-Tools for Linux
 
-**Current version:** 1.2.0
+**Current version:** 1.2.1
 
 This repository contains a tool for bash to help inpection of databases.
 
